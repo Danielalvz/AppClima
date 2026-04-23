@@ -1,0 +1,352 @@
+/* Resets globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body y fondo: gradiente más atractivo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: url('../images/pokopia.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #333;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1); /* Overlay sutil para contraste */
+    z-index: 0;
+}
+
+/* Fondo de Pokémon: animación suave */
+.pokemon-bg {
+    display: none;
+    transition: opacity 0.5s ease;
+}
+
+/* Contenedor principal: más padding y sombra */
+.container {
+    background: rgba(255, 255, 255, 0.95); /* Fondo semi-transparente */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    max-width: 550px; /* Un poco más ancho para mejor layout */
+    width: 100%;
+    z-index: 1;
+    position: relative;
+    backdrop-filter: blur(10px); /* Efecto de vidrio */
+}
+
+/* Título: fuente más grande y color */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5rem; /* Relativo para escalabilidad */
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de búsqueda */
+.search-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Más espacio */
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
+
+.search-box input {
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 18px;
+    flex: 1;
+    min-width: 200px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-box input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 8px rgba(102, 126, 234, 0.3); /* Focus accesible */
+    outline: none;
+}
+
+.search-box button {
+    padding: 15px 35px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.search-box button:hover {
+    transform: translateY(-2px); /* Efecto de elevación */
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.search-box button:active {
+    transform: translateY(0);
+}
+
+/* Checkbox: mejor espaciado */
+.forecast-option {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.forecast-option label {
+    font-size: 16px;
+    color: #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.forecast-option input[type="checkbox"] {
+    transform: scale(1.2); /* Más grande para móviles */
+}
+
+/* Resultados */
+.weather-result {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.weather-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in;
+    text-align: center;
+}
+
+.weather-card h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+.weather-card h3 {
+    margin: 25px 0 15px;
+    color: #333;
+    text-align: left;
+    font-size: 1.4rem;
+}
+
+.temperature {
+    font-size: 3.5rem; /* Más grande en desktop */
+    font-weight: bold;
+    color: #667eea;
+    margin: 20px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wind {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.wind::before {
+    content: '💨'; /* Ícono para viento */
+}
+
+/* Pronóstico: íconos y mejor layout */
+.forecast-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna para legibilidad */
+    gap: 10px;
+}
+
+.forecast-list li {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 5px solid #667eea;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s;
+}
+
+.forecast-list li:hover {
+    transform: translateX(5px); /* Efecto hover */
+    background: #e9ecef;
+}
+
+.forecast-list strong {
+    color: #333;
+    font-size: 1.1rem;
+    min-width: 100px; /* Espacio fijo para fechas */
+}
+
+.forecast-list .temp {
+    color: #667eea;
+    font-weight: bold;
+}
+
+.forecast-list .condition {
+    font-style: italic;
+    color: #666;
+    margin-left: auto;
+}
+
+.forecast-list .condition::before {
+    content: '🌤️'; /* Ícono base, cambia según código en JS */
+    margin-right: 5px;
+}
+
+/* Pokémon: mejor borde y sombra */
+.pokemon-container {
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 15px;
+    border: 3px solid #667eea;
+    text-align: center;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    border-radius: 10px;
+}
+
+.pokemon-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px;
+}
+
+/* Estados de carga y error: más visuales */
+.error, .loading {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+
+.error {
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.loading {
+    color: #667eea;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Responsividad */
+@media (max-width: 768px) { /* Tablets y móviles */
+    .container {
+        padding: 25px;
+        max-width: 95%;
+        margin: 20px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .search-box {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-box input, .search-box button {
+        width: 100%;
+        font-size: 16px;
+    }
+    
+    .temperature {
+        font-size: 2.5rem;
+    }
+    
+    .forecast-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px;
+    }
+    
+    .forecast-list strong {
+        min-width: auto;
+    }
+    
+    .pokemon-image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .pokemon-name {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) { /* Móviles pequeños */
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .temperature {
+        font-size: 2rem;
+    }
+    
+    .forecast-list li {
+        padding: 10px;
+    }
+}

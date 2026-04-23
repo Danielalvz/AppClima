@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="pokemon-bg"></div>
+    <div class="container">
+        <h1>🌤️ Aplicación del Clima</h1>
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" id="cityInput" placeholder="Ingresa el nombre de una ciudad...">
+                <button id="searchBtn">Buscar</button>
+            </div>
+            <div class="forecast-option">
+                <label><input type="checkbox" id="forecastCheck"> Mostrar pronóstico de 5 días</label>
+            </div>
+        </div>
+        <div id="weatherResult" class="weather-result"></div>
+    </div>
+    <script src="api/weatherService.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
